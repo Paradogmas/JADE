@@ -22,7 +22,7 @@ public class AgentePaciente extends Agent{
 			areaDeAtendimento = (String) args[0];
 			System.out.println("Estou procurando por atendimento em " + areaDeAtendimento);
 
-			addBehaviour(new TickerBehaviour(this, 60000) {
+			addBehaviour(new TickerBehaviour(this, 5000) {
 				@Override
 				protected void onTick() {
 					System.out.println("Olá médicos, preciso de atendimento em " + areaDeAtendimento);

@@ -22,7 +22,7 @@ public class AgenteMedico extends Agent{
         System.out.println("Olá agente médico, "+getAID().getName());
         especialidades = new Hashtable();
         myGui = new GuiAtendimentoMedico(this);
-        myGui.showGui();
+        //myGui.showGui();
 
 
         DFAgentDescription dfd = new DFAgentDescription();
@@ -59,7 +59,7 @@ public class AgenteMedico extends Agent{
             @Override
             public void action() {
                 especialidades.put(especialidade, new Integer(preco));
-                System.out.println("Atendimento em "+especialidade+"está disponível por R$"+preco);
+                System.out.println("Atendimento em "+especialidade+" está disponível por R$"+preco);
             }
         });
     }

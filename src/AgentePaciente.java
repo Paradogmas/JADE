@@ -11,35 +11,12 @@ public class AgentePaciente extends Agent{
 	
 	private static final long serialVersionUID = -216671578848886786L;
 	private AID[] AgentesMedicos;
+	/*
 	class makingFriendsBehaviour extends CyclicBehaviour {
 		private static final long serialVersionUID = 776821786531384442L;
 
-		private String nome;
-		private Integer idade;
-		private String areaDeAtendimento;
-
-
-		public String getNome() {
-			return nome;
-		}
-
-		public void setNome(String nome) {
-			this.nome = nome;
-		}
-
-
-		public String getAreaDeAtendimento() {
-			return areaDeAtendimento;
-		}
-
-		public void setAreaDeAtendimento(String areaDeAtendimento) {
-			this.areaDeAtendimento = areaDeAtendimento;
-		}
-
-
-		
 		private int n = 0;
-		
+
 		public makingFriendsBehaviour(Agent a) {
 			super(a);
 		}
@@ -84,11 +61,11 @@ public class AgentePaciente extends Agent{
 			}
 		}
 		
-	}
+	}*/
 	private String areaDeAtendimento;
 	protected void setup() {
 
-		System.out.println("Olá agente "+getName()+". Precisa de atendimento em que área?");
+		System.out.println("Olá agente "+getAID().getName()+". Precisa de atendimento em que área?");
 		Object[] args = getArguments();
 		if(args != null && args.length >0) {
 			areaDeAtendimento = (String) args[0];
@@ -154,7 +131,7 @@ public class AgentePaciente extends Agent{
 						cfp.addReceiver(AgentesMedicos[i]);
 					}
 					cfp.setContent(areaDeAtendimento);
-					cfp.setConversationId("atendimento");
+					cfp.setConversationId("paciente");
 					cfp.setReplyWith("cfp" + System.currentTimeMillis());
 					myAgent.send(cfp);
 					//mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Central de atendimento médico"),
@@ -184,7 +161,7 @@ public class AgentePaciente extends Agent{
 					ACLMessage atendimento = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
 					atendimento.addReceiver(melhorMedico);
 					atendimento.setContent(areaDeAtendimento);
-					atendimento.setConversationId("atendimento");
+					atendimento.setConversationId("paciente");
 					atendimento.setReplyWith("Atendimento "+System.currentTimeMillis());
 					myAgent.send(atendimento);
 					//mt = MessageTemplate.and(MessageTemplate.MatchConversationId("Central de atendimento médico"),

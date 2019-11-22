@@ -1,3 +1,5 @@
+package agents;
+
 import jade.core.*;
 import jade.core.behaviours.*;
 import jade.lang.acl.ACLMessage;
@@ -11,57 +13,6 @@ public class AgentePaciente extends Agent{
 	
 	private static final long serialVersionUID = -216671578848886786L;
 	private AID[] AgentesMedicos;
-	/*
-	class makingFriendsBehaviour extends CyclicBehaviour {
-		private static final long serialVersionUID = 776821786531384442L;
-
-		private int n = 0;
-
-		public makingFriendsBehaviour(Agent a) {
-			super(a);
-		}
-
-		@Override
-		public void action() {
-			System.out.println("Inicializando a action do meu comportamento!");
-			
-			System.out.println("Recebendo o conteúdo enviado por um terceiro!");
-			ACLMessage msg = myAgent.receive();
-			if(msg != null) {
-				System.out.println("Criando uma resposta!");
-				ACLMessage reply = msg.createReply();
-				
-				if(msg.getPerformative() == ACLMessage.REQUEST) {
-					System.out.println("REQUEST!");
-					String content = msg.getContent();
-					System.out.println(++n + " " + getLocalName() + ": recebi " + content);
-					
-					if(content != null) {
-						System.out.println("INFORM!");
-						reply.setPerformative(ACLMessage.INFORM);
-						reply.setContent("Oi! Claro! Já sou seu amigo!");
-						System.out.println("Enviando msg: " + reply.getContent());
-					} else {
-						System.out.println("REFUSE!");
-						reply.setPerformative(ACLMessage.REFUSE);
-						reply.setContent("No momento, estou triste e não quero ter amigo");
-						System.out.println("Enviando msg: " + reply.getContent());
-					}
-				} else {
-					System.out.println("NOT_UNDERSTOOD!");
-					reply.setPerformative(ACLMessage.NOT_UNDERSTOOD);
-					reply.setContent("Não entendi sua mensagem.");
-					System.out.println("Enviando msg: " + reply.getContent());
-				}
-				
-				System.out.println("Msg enviada!");
-				send(reply);
-			}  else {
-				block();
-			}
-		}
-		
-	}*/
 	private String areaDeAtendimento;
 	protected void setup() {
 

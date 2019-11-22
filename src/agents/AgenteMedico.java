@@ -1,3 +1,5 @@
+package agents;
+
 import jade.core.*;
 import jade.core.behaviours.*;
 import jade.lang.acl.ACLMessage;
@@ -12,15 +14,15 @@ import java.util.Hashtable;
 public class AgenteMedico extends Agent{
     private static final long serialVersionUID = -216671578848886786L;
     private Hashtable especialidades;
-    //private GuiAtendimentoMedico myGui;
+    private GuiAtendimentoMedico myGui;
 
     @Override
     protected void setup() {
 
         System.out.println("Olá agente médico, "+getAID().getName());
         especialidades = new Hashtable();
-        //myGui = new GuiAtendimentoMedico(this);
-        //myGui.showGui();
+        myGui = new GuiAtendimentoMedico(this);
+        myGui.showGui();
 
 
         DFAgentDescription dfd = new DFAgentDescription();

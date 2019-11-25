@@ -30,6 +30,13 @@ public class HospitalOntology extends Ontology implements HospitalVocabulary {
             cs.add(PACIENTE_CPF, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
             cs.add(PACIENTE_NOME, (PrimitiveSchema) getSchema(BasicOntology.STRING), ObjectSchema.MANDATORY);
 
+
+            // CONSULTA
+            add(cs = new ConceptSchema(CONSULTA), Consulta.class);
+            cs.add(CONSULTA_SALA, (PrimitiveSchema) getSchema(BasicOntoloy.STRING), ObjectSchema.MANDATORY);
+            cs.add(CONSULTA_ID, (PrimitiveSchema) getSchema(BasicOntology.INTEGER), ObjectSchema.MANDATORY);
+            cs.add(CONSULTA_DATA, (PrimitiveSchema) getSchema(BasicOntology.DATE), ObjectSchema.MANDATORY);
+
         } catch (OntologyException oe) {
             oe.printStackTrace();
         }

@@ -25,7 +25,6 @@ public class cadastro_medico_screen extends Agent {
 
     public cadastro_medico_screen(ContainerController c) {
         Container = c;
-        //super(a.getLocalName());
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
         tela.setContentPane(panel);
@@ -50,6 +49,7 @@ public class cadastro_medico_screen extends Agent {
                     Integer preco = Integer.parseInt(preco_text_box.getText().trim());
                     Hashtable h = new Hashtable<String ,Integer>();
 
+                    System.out.println(c);
                     h.put(especialidade, preco);
 
                     Object arrList[] = new Object[1];

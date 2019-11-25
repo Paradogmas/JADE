@@ -1,3 +1,4 @@
+/*
 package ontology;
 
 import jade.content.onto.*;
@@ -51,4 +52,4 @@ public class HospitalOntology extends Ontology implements HospitalVocabulary {
             oe.printStackTrace();
         }
     }
-}// BankOntology
+}*/

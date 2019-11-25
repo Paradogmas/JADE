@@ -1,4 +1,5 @@
 package view;
+
 import agents.*;
 import jade.wrapper.ContainerController;
 
@@ -16,7 +17,7 @@ public class main_screen {
     private JFrame tela;
     public ContainerController Container;
 
-    public main_screen(ContainerController c){
+    public main_screen(ContainerController c) {
         Container = c;
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
@@ -29,14 +30,13 @@ public class main_screen {
         cadastrar_medico_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                agents.AgenteMedico a = new AgenteMedico();
                 cadastro_medico_screen screen = new cadastro_medico_screen(Container);
             }
         });
         procurar_consulta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Faz alguma coisa
+                procurar_consulta_screen screen = new procurar_consulta_screen(Container);
             }
         });
     }

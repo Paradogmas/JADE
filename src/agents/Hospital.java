@@ -6,7 +6,7 @@ import jade.core.AID;
 import jade.core.Agent;
 
 public class Hospital extends Agent{
-
+        public ContainerController Container;
         private static final long serialVersionUID = 1L;
         private String areaDeAtendimento;
         private AID[] AgentesMedicos;
@@ -14,6 +14,6 @@ public class Hospital extends Agent{
         @Override
         protected void setup() {
             super.setup();
-            main_screen screen = new main_screen();
+            main_screen screen = new main_screen(getContainerController());
         }
 }

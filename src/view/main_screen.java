@@ -1,5 +1,7 @@
 package view;
 import agents.*;
+import jade.wrapper.ContainerController;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +14,10 @@ public class main_screen {
     private JLabel title_text;
     private JPanel main_panel;
     private JFrame tela;
+    public ContainerController Container;
 
-    public main_screen(){
+    public main_screen(ContainerController c){
+        Container = c;
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
         tela.setContentPane(main_panel);
@@ -26,7 +30,7 @@ public class main_screen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 agents.AgenteMedico a = new AgenteMedico();
-                cadastro_medico_screen screen = new cadastro_medico_screen(a);
+                cadastro_medico_screen screen = new cadastro_medico_screen(Container);
             }
         });
         procurar_consulta.addActionListener(new ActionListener() {

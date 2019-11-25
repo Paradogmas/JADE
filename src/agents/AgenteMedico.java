@@ -20,13 +20,14 @@ public class AgenteMedico extends Agent {
     private cadastro_medico_screen myGui;
 
     protected void setup() {
+        System.out.println(getContainerController());
+        System.out.println(getName());
         especialidades = new Hashtable<String,Integer>();
-
-        myGui = new cadastro_medico_screen(this);
 
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
         ServiceDescription sd = new ServiceDescription();
+        AtualizarCatalogo("aaaa", 50);
         sd.setType("Atendimento-Medico");
         sd.setName("Atendimento");
         dfd.addServices(sd);

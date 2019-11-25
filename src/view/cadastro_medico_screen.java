@@ -22,6 +22,7 @@ public class cadastro_medico_screen extends Agent{
     private JLabel titulo_especialidade;
     private JLabel titulo_preco;
     private JButton button_add;
+    private JTextField nome_medico_text_box;
     private JFrame tela;
 
     public cadastro_medico_screen(ContainerController c){
@@ -46,19 +47,23 @@ public class cadastro_medico_screen extends Agent{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
-                    AgentController Agent=null;
-                    Agent = Container.createNewAgent("MEUAGENTE", "agents.AgenteMedico", null);
-                    Agent.start();
-                    /*
-                    //AgenteMedico medico;
-                    //medico = new AgenteMedico();
+                    String name = nome_medico_text_box.getText().trim();
+                    System.out.println(name);
+
+
                     String esp = especialidade.getText().trim();
                     System.out.println(esp);
                     String price = preco.getText().trim();
-                    //myAgente.AtualizarCatalogo(esp, Integer.parseInt(price));
+
                     preco.setText("");
                     especialidade.setText("");
-                    //medico.CreateMedico("Nome");*/
+
+                    AgentController Agent=null;
+                    Agent = Container.createNewAgent(name, "agents.AgenteMedico", null);
+                    Agent.start();
+
+
+
                 }
                 catch (Exception er){
                     System.out.println("Valor invalido");

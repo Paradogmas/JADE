@@ -27,16 +27,15 @@ public class procurar_consulta_screen extends Agent {
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
         tela.setContentPane(panel);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.pack();
         tela.setVisible(true);
-        tela.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                myAgente.doDelete();
+        panel = new JPanel();
+        tela.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                tela.dispose();
             }
         });
-        panel = new JPanel();
-
         procurar_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -55,12 +54,6 @@ public class procurar_consulta_screen extends Agent {
                 } catch (Exception er) {
                     System.out.println("Valor invalido procurar consulta screen");
                 }
-            }
-        });
-        tela.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                tela.dispose();
             }
         });
     }

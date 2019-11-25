@@ -1,5 +1,8 @@
 package agents;
-
+import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
+import jade.wrapper.StaleProxyException;
+import view.cadastro_medico_screen;
 import jade.core.Agent;
 import jade.core.behaviours.*;
 import jade.lang.acl.ACLMessage;
@@ -14,12 +17,12 @@ import java.util.*;
 public class AgenteMedico extends Agent {
     private static final long serialVersionUID = 1L;
     private Hashtable<String,Integer> especialidades;
-    private GuiAtendimentoMedico myGui;
+    private cadastro_medico_screen myGui;
 
     protected void setup() {
         especialidades = new Hashtable<String,Integer>();
 
-        myGui = new GuiAtendimentoMedico(this);
+        myGui = new cadastro_medico_screen(this);
 
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
@@ -107,6 +110,16 @@ public class AgenteMedico extends Agent {
                 System.out.println("Atendimento em "+especialidade+" está disponível por R$"+price);
             }
         } );
+
+    }
+    public void CreateMedico(String nome){
+        ContainerController cc = getContainerController();
+        try {
+            AgentController ac = cc.createNewAgent(nome, "agents.AgenteMedico", null);
+            ac.start();
+        } catch (StaleProxyException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void takeDown() {

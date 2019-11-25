@@ -1,4 +1,8 @@
-package agents;
+package view;
+
+import agents.AgenteMedico;
+import jade.wrapper.AgentController;
+import jade.wrapper.ContainerController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -6,7 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
-public class GuiAtendimentoMedico {
+public class cadastro_medico_screen {
     private AgenteMedico myAgente;
     private JPanel panel;
     private JTextField especialidade;
@@ -16,7 +20,7 @@ public class GuiAtendimentoMedico {
     private JButton button_add;
     private JFrame tela;
 
-    GuiAtendimentoMedico(AgenteMedico a){
+    public cadastro_medico_screen(AgenteMedico a){
         //super(a.getLocalName());
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
@@ -38,12 +42,15 @@ public class GuiAtendimentoMedico {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try{
+                    AgenteMedico medico;
+                    medico = new AgenteMedico();
                     String esp = especialidade.getText().trim();
                     System.out.println(esp);
                     String price = preco.getText().trim();
                     myAgente.AtualizarCatalogo(esp, Integer.parseInt(price));
                     preco.setText("");
                     especialidade.setText("");
+                    medico.CreateMedico("Nome");
                 }
                 catch (Exception er){
                     System.out.println("Valor invalido");

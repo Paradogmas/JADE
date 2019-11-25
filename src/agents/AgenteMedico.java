@@ -27,7 +27,7 @@ public class AgenteMedico extends Agent {
         DFAgentDescription dfd = new DFAgentDescription();
         dfd.setName(getAID());
         ServiceDescription sd = new ServiceDescription();
-        AtualizarCatalogo("aaaa", 50);
+        AtualizarCatalogo(getArguments()[0].toString(), Integer.parseInt(getArguments()[1].toString()));
         sd.setType("Atendimento-Medico");
         sd.setName("Atendimento");
         dfd.addServices(sd);

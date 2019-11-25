@@ -12,6 +12,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
 
 public class cadastro_medico_screen extends Agent{
     ContainerController Container;
@@ -50,7 +53,6 @@ public class cadastro_medico_screen extends Agent{
                     String name = nome_medico_text_box.getText().trim();
                     System.out.println(name);
 
-
                     String esp = especialidade.getText().trim();
                     System.out.println(esp);
                     String price = preco.getText().trim();
@@ -58,12 +60,14 @@ public class cadastro_medico_screen extends Agent{
                     preco.setText("");
                     especialidade.setText("");
 
+                    Object arrList[] = new Object[3];
+                    arrList[0] = esp;
+                    arrList[1] = price;
+
+
                     AgentController Agent=null;
-                    Agent = Container.createNewAgent(name, "agents.AgenteMedico", null);
+                    Agent = Container.createNewAgent(name, "agents.AgenteMedico", arrList);
                     Agent.start();
-
-
-
                 }
                 catch (Exception er){
                     System.out.println("Valor invalido");

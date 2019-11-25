@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.Hashtable;
 
 
 public class cadastro_medico_screen extends Agent {
@@ -46,11 +47,13 @@ public class cadastro_medico_screen extends Agent {
                     System.out.println(nome);
 
                     String especialidade = especialidade_combo_box.getSelectedItem().toString();
-                    String preco = preco_text_box.getText().trim();
+                    Integer preco = Integer.parseInt(preco_text_box.getText().trim());
+                    Hashtable h = new Hashtable<String ,Integer>();
 
-                    Object arrList[] = new Object[3];
-                    arrList[0] = especialidade;
-                    arrList[1] = preco;
+                    h.put(especialidade, preco);
+
+                    Object arrList[] = new Object[1];
+                    arrList[0] = h;
 
 
                     AgentController Agent = null;

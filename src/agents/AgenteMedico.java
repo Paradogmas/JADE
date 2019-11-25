@@ -39,7 +39,6 @@ public class AgenteMedico extends Agent {
         }
 
         addBehaviour(new OfferRequestsServer());
-
         addBehaviour(new PurchaseOrdersServer());
     }
 

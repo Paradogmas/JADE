@@ -1,32 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.cadastro_medico_screen">
-  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="panel" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
       <xy x="20" y="20" width="500" height="400"/>
     </constraints>
     <properties/>
-    <border type="none"/>
+    <border type="none" title=""/>
     <children>
-      <grid id="8c6c8" layout-manager="GridLayoutManager" row-count="6" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="8c6c8" layout-manager="GridLayoutManager" row-count="8" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="3f86e" class="javax.swing.JTextField" binding="especialidade">
-            <constraints>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                <preferred-size width="150" height="-1"/>
-              </grid>
-            </constraints>
-            <properties/>
-          </component>
           <component id="638e7" class="javax.swing.JTextField" binding="preco">
             <constraints>
-              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -34,7 +26,7 @@
           </component>
           <component id="a2944" class="javax.swing.JLabel" binding="titulo_especialidade">
             <constraints>
-              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Especialidade"/>
@@ -42,7 +34,7 @@
           </component>
           <component id="6f2af" class="javax.swing.JLabel" binding="titulo_preco">
             <constraints>
-              <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Preço"/>
@@ -50,7 +42,7 @@
           </component>
           <component id="63e87" class="javax.swing.JButton" binding="button_add">
             <constraints>
-              <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+              <grid row="7" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="Add"/>
@@ -58,14 +50,150 @@
           </component>
           <component id="d12d8" class="javax.swing.JTextField" binding="nome_medico_text_box">
             <constraints>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
             <properties/>
           </component>
+          <component id="8627" class="javax.swing.JLabel">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Nome"/>
+            </properties>
+          </component>
+          <component id="95c7a" class="javax.swing.JSeparator">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties/>
+          </component>
+          <component id="be81b" class="javax.swing.JComboBox" binding="especialidade">
+            <constraints>
+              <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <model>
+                <item value="Acupuntura"/>
+                <item value=""/>
+                <item value="Alergia e Imunologia"/>
+                <item value=""/>
+                <item value="Anestesiologia"/>
+                <item value=""/>
+                <item value="Angiologia"/>
+                <item value=""/>
+                <item value="Cancerologia"/>
+                <item value=""/>
+                <item value="Cardiologia"/>
+                <item value=""/>
+                <item value="Cirurgia Cardiovascular"/>
+                <item value=""/>
+                <item value="Cirurgia da Mão"/>
+                <item value=""/>
+                <item value="Cirurgia de Cabeça e Pescoço"/>
+                <item value=""/>
+                <item value="Cirurgia do Aparelho Digestivo"/>
+                <item value=""/>
+                <item value="Cirurgia Geral"/>
+                <item value=""/>
+                <item value="Cirurgia Pediátrica"/>
+                <item value=""/>
+                <item value="Cirurgia Plástica"/>
+                <item value=""/>
+                <item value="Cirurgia Torácica"/>
+                <item value=""/>
+                <item value="Cirurgia Vascular"/>
+                <item value=""/>
+                <item value="Clínica Médica"/>
+                <item value=""/>
+                <item value="Coloproctologia"/>
+                <item value=""/>
+                <item value="Dermatologia"/>
+                <item value=""/>
+                <item value="Endocrinologia e Metabologia"/>
+                <item value=""/>
+                <item value="Endoscopia"/>
+                <item value=""/>
+                <item value="Gastroenterologia"/>
+                <item value=""/>
+                <item value="Genética Médica"/>
+                <item value=""/>
+                <item value="Geriatria"/>
+                <item value=""/>
+                <item value="Ginecologia e Obstetrícia"/>
+                <item value=""/>
+                <item value="Hematologia e Hemoterapia"/>
+                <item value=""/>
+                <item value="Homeopatia"/>
+                <item value=""/>
+                <item value="Infectologia"/>
+                <item value=""/>
+                <item value="Mastologia"/>
+                <item value=""/>
+                <item value="Medicina de Família e Comunidade"/>
+                <item value=""/>
+                <item value="Medicina do Trabalho"/>
+                <item value=""/>
+                <item value="Medicina de Tráfego"/>
+                <item value=""/>
+                <item value="Medicina Esportiva"/>
+                <item value=""/>
+                <item value="Medicina Física e Reabilitação"/>
+                <item value=""/>
+                <item value="Medicina Intensiva"/>
+                <item value=""/>
+                <item value="Medicina Legal e Perícia Médica"/>
+                <item value=""/>
+                <item value="Medicina Nuclear"/>
+                <item value=""/>
+                <item value="Medicina Preventiva e Social"/>
+                <item value=""/>
+                <item value="Nefrologia"/>
+                <item value=""/>
+                <item value="Neurocirurgia"/>
+                <item value=""/>
+                <item value="Neurologia"/>
+                <item value=""/>
+                <item value="Nutrologia"/>
+                <item value=""/>
+                <item value="Oftalmologia"/>
+                <item value=""/>
+                <item value="Ortopedia e Traumatologia"/>
+                <item value=""/>
+                <item value="Otorrinolaringologia"/>
+                <item value=""/>
+                <item value="Patologia"/>
+                <item value=""/>
+                <item value="Patologia Clínica/Medicina Laboratorial"/>
+                <item value=""/>
+                <item value="Pediatria"/>
+                <item value=""/>
+                <item value="Pneumologia"/>
+                <item value=""/>
+                <item value="Psiquiatria"/>
+                <item value=""/>
+                <item value="Radiologia e Diagnóstico por Imagem"/>
+                <item value=""/>
+                <item value="Radioterapia"/>
+                <item value=""/>
+                <item value="Reumatologia"/>
+                <item value=""/>
+                <item value="Urologia"/>
+              </model>
+            </properties>
+          </component>
         </children>
       </grid>
+      <component id="81e2" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Cadastro M�dico"/>
+        </properties>
+      </component>
     </children>
   </grid>
 </form>

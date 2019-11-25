@@ -12,18 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class cadastro_medico_screen extends Agent{
     ContainerController Container;
-    private AgenteMedico myAgente;
     private JPanel panel;
-    private JTextField especialidade;
+    private JComboBox especialidade;
     private JTextField preco;
-    private JLabel titulo_especialidade;
-    private JLabel titulo_preco;
     private JButton button_add;
     private JTextField nome_medico_text_box;
     private JFrame tela;

@@ -49,3 +49,11 @@ with stricter preferences about location and time."
 Com base neste artigo decidimos implementar agentes capazes de auxiliar na escolha de consultas baseados no preço e na especialidade do médico.
 
 Também foi implementado a Hospital Ontology uma ontologia simples com o objetivo de auxiliar na comunicação dos agentes através da definição semântica de termos e eventos que serão utilizados ao decorrer do desenvolvimento do projeto.
+
+## Funcionamento do Projeto
+
+O paradigma do projeto segue o Sistema de Multiagentes implementado utilizando a linguagem JAVA, possuindo os Agentes Hospital, Paciente e Médico.
+
+O Agente Hospital é responsavel por criar novos Agentes de Paciente e Médico. O Agente Médico possui um comportamento ciclico conhecido tambem chamado de Cyclic Behaviour que permite o Agente permanecer em execução para atender as buscas, o Agente Paciente possui um comportamento Ticker Behaviour que permite o Agente enviar uma requisição e espera a resposta com um tempo determinado definido para essa resposta, limitando as informações, evitando uma quantidade excessiva de respostas.
+
+O sistema, com base nos filtros de busca selecionados, irá realizar a melhor seleção de Médicos com base nas necessidades do Paciente, facilitanto e agilizando o atendimento para uma melhor experiência de usuário.

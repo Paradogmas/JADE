@@ -13,114 +13,145 @@ import jade.domain.FIPAAgentManagement.ServiceDescription;
 public class AgentePaciente extends Agent {
 
     private static final long serialVersionUID = 1L;
-    private String areaDeAtendimento;
-    private AID[] AgentesMedicos;
+    // The title of the book to buy
+    private String targetBookTitle;
+    // The list of known seller agents
+    private AID[] sellerAgents;
 
+    // Put agent initializations here
     protected void setup() {
-        System.out.println("Olá agente " + getAID().getName() + ". Precisa de atendimento em que área?");
+        System.out.println("Hallo! Buyer-agent "+getAID().getName()+" is ready.");
+
 
         Object[] args = getArguments();
         if (args != null && args.length > 0) {
-            areaDeAtendimento = (String) args[0];
-            System.out.println("Estou procurando por atendimento em " + areaDeAtendimento);
+            targetBookTitle = (String) args[0];
+            System.out.println("Target book is "+targetBookTitle);
 
+            // Add a TickerBehaviour that schedules a request to seller agents every 10 seconds
             addBehaviour(new TickerBehaviour(this, 10000) {
 
                 private static final long serialVersionUID = 1L;
 
                 protected void onTick() {
-                    System.out.println("Olá médicos, preciso de atendimento em " + areaDeAtendimento);
+                    System.out.println("Trying to buy "+targetBookTitle);
+                    // Update the list of seller agents
                     DFAgentDescription template = new DFAgentDescription();
                     ServiceDescription sd = new ServiceDescription();
-                    sd.setType("Atendimento-Medico");
+                    sd.setType("book-selling");
                     template.addServices(sd);
                     try {
                         DFAgentDescription[] result = DFService.search(myAgent, template);
-                        System.out.println("Os seguintes médicos estão disponveís: ");
-                        AgentesMedicos = new AID[result.length];
+                        System.out.println("Found the following seller agents:");
+                        sellerAgents = new AID[result.length];
                         for (int i = 0; i < result.length; ++i) {
-                            AgentesMedicos[i] = result[i].getName();
-                            System.out.println(AgentesMedicos[i].getName());
+                            sellerAgents[i] = result[i].getName();
+                            System.out.println(sellerAgents[i].getName());
                         }
-                    } catch (FIPAException fe) {
+                    }
+                    catch (FIPAException fe) {
                         fe.printStackTrace();
                     }
 
+                    // Perform the request
                     myAgent.addBehaviour(new RequestPerformer());
                 }
-            });
-        } else {
-            System.out.println("Não há médicos disponíveis.");
+            } );
+        }
+        else {
+            // Make the agent terminate
+            System.out.println("No target book title specified");
             doDelete();
         }
     }
 
+
+    /**
+     Inner class RequestPerformer.
+     This is the behaviour used by Book-buyer agents to request seller
+     agents the target book.
+     */
     private class RequestPerformer extends Behaviour {
 
         private static final long serialVersionUID = 1L;
-        private AID melhorMedico;
-        private int melhorPreco;
-        private int repliesCnt = 0;
-        private MessageTemplate mt;
+        private AID bestSeller; // The agent who provides the best offer
+        private int bestPrice;  // The best offered price
+        private int repliesCnt = 0; // The counter of replies from seller agents
+        private MessageTemplate mt; // The template to receive replies
         private int step = 0;
 
         public void action() {
             switch (step) {
                 case 0:
+                    // Send the cfp to all sellers
                     ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-                    for (int i = 0; i < AgentesMedicos.length; ++i) {
-                        cfp.addReceiver(AgentesMedicos[i]);
+                    for (int i = 0; i < sellerAgents.length; ++i) {
+                        cfp.addReceiver(sellerAgents[i]);
                     }
-                    cfp.setContent(areaDeAtendimento);
-                    cfp.setConversationId("paciente");
-                    cfp.setReplyWith("cfp" + System.currentTimeMillis());
+                    cfp.setContent(targetBookTitle);
+                    cfp.setConversationId("book-trade");
+                    cfp.setReplyWith("cfp"+System.currentTimeMillis()); // Unique value
                     myAgent.send(cfp);
-                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("atendimento"),
+                    // Prepare the template to get proposals
+                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("book-trade"),
                             MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
                     step = 1;
                     break;
                 case 1:
+                    // Receive all proposals/refusals from seller agents
                     ACLMessage reply = myAgent.receive(mt);
                     if (reply != null) {
+                        // Reply received
                         if (reply.getPerformative() == ACLMessage.PROPOSE) {
+                            // This is an offer
                             int price = Integer.parseInt(reply.getContent());
-                            if (melhorMedico == null || price < melhorPreco) {
-                                melhorPreco = price;
-                                melhorMedico = reply.getSender();
+                            if (bestSeller == null || price < bestPrice) {
+                                // This is the best offer at present
+                                bestPrice = price;
+                                bestSeller = reply.getSender();
                             }
                         }
                         repliesCnt++;
-                        if (repliesCnt >= AgentesMedicos.length) {
+                        if (repliesCnt >= sellerAgents.length) {
+                            // We received all replies
                             step = 2;
                         }
-                    } else {
+                    }
+                    else {
                         block();
                     }
                     break;
                 case 2:
+                    // Send the purchase order to the seller that provided the best offer
                     ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
-                    order.addReceiver(melhorMedico);
-                    order.setContent(areaDeAtendimento);
-                    order.setConversationId("atendimento");
-                    order.setReplyWith("order" + System.currentTimeMillis());
+                    order.addReceiver(bestSeller);
+                    order.setContent(targetBookTitle);
+                    order.setConversationId("book-trade");
+                    order.setReplyWith("order"+System.currentTimeMillis());
                     myAgent.send(order);
-                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("atendimento"),
+                    // Prepare the template to get the purchase order reply
+                    mt = MessageTemplate.and(MessageTemplate.MatchConversationId("book-trade"),
                             MessageTemplate.MatchInReplyTo(order.getReplyWith()));
                     step = 3;
                     break;
                 case 3:
+                    // Receive the purchase order reply
                     reply = myAgent.receive(mt);
                     if (reply != null) {
+                        // Purchase order reply received
                         if (reply.getPerformative() == ACLMessage.INFORM) {
-                            System.out.println("Atendimento em " + areaDeAtendimento + " com doutor " + reply.getSender().getName());
-                            System.out.println("Preco: R$ " + melhorPreco);
+                            // Purchase successful. We can terminate
+                            System.out.println(targetBookTitle+" successfully purchased from agent "+reply.getSender().getName());
+                            System.out.println("Price = "+bestPrice);
                             myAgent.doDelete();
-                        } else {
-                            System.out.println("Descuple mas não há mais atendimento disponível.");
+                        }
+                        else {
+                            System.out.println("Attempt failed: requested book already sold.");
                         }
 
                         step = 4;
-                    } else {
+                    }
+                    else {
                         block();
                     }
                     break;
@@ -129,26 +160,32 @@ public class AgentePaciente extends Agent {
 
         public boolean done() {
 
-            if (step == 2 && melhorMedico == null) {
-                System.out.println("Descuple mas o atendimento médico em " + areaDeAtendimento + " com o doutor" + melhorMedico.getName() + " não está mais disponível.");
+            if (step == 2 && bestSeller == null) {
+                System.out.println("Attempt failed: "+targetBookTitle+" not available for sale");
             }
 
-            boolean medicoNaoDisponivel = (step == 2 && melhorMedico == null);
-            boolean consultaMarcada = (step == 4);
+            boolean bookIsNotAvailable = (step == 2 && bestSeller == null);
+            boolean negotiationIsConcluded = (step == 4);
 
-            boolean terminou = false;
-            if (medicoNaoDisponivel || consultaMarcada) {
-                terminou = true;
-            } else {
-                terminou = false;
+            boolean isDone = false;
+            if (bookIsNotAvailable || negotiationIsConcluded) {
+                isDone = true;
+            }
+            else {
+                isDone = false;
             }
 
-            return terminou;
+            return isDone;
+            //return ((step == 2 && bestSeller == null) || step == 4);
         }
+    }  // End of inner class RequestPerformer
+
+
+    // Put agent clean-up operations here
+    protected void takeDown() {
+        // Printout a dismissal message
+        System.out.println("Buyer-agent "+getAID().getName()+" terminating.");
     }
 
-    protected void takeDown() {
-        System.out.println("Até mais!");
-    }
 }
 

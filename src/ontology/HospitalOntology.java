@@ -3,7 +3,7 @@ package ontology;
 import jade.content.onto.*;
 import jade.content.schema.*;
 
-
+/*
 public class HospitalOntology extends Ontology implements HospitalVocabulary {
 
     public static final String ONTOLOGY_NAME = "Hospital-Ontology";
@@ -14,7 +14,7 @@ public class HospitalOntology extends Ontology implements HospitalVocabulary {
     }
 
     private HospitalOntology() {
-
+        /*
         super(ONTOLOGY_NAME, BasicOntology.getInstance());
 
         try {
@@ -51,4 +51,4 @@ public class HospitalOntology extends Ontology implements HospitalVocabulary {
             oe.printStackTrace();
         }
     }
-}// BankOntology
+}// BankOntology*/

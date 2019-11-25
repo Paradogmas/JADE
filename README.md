@@ -26,3 +26,11 @@
 * **5º:** Clique em apply e Run.
 
 Após estes passos a janela do JADE deve aparecer em sua tela.
+
+## Motivação do Projeto
+
+Em 2001 Tim Berner-Lee publicou seu artigo [The Semantic Web](https://www-sop.inria.fr/acacia/cours/essi2006/Scientific%20American_%20Feature%20Article_%20The%20Semantic%20Web_%20May%202001.pdf) no qual ele cita o caso de Pete e Lucy na qual eles precisam marcar uma consulta para a mãe deles:
+
+"His sister, Lucy, was on the line from the doctor's office: "Mom needs to see a specialist and then has to have a series of physical therapy sessions. Biweekly or something. I'm going to have my agent set up the appointments.""
+
+Nesse artigo ele apresenta o conceito de agentes semânticos que deveriam auxiliar a realizar tarefas desde que agendar reuniões a escolher o melhor caminho para casa. No caso citado no artigo se refere a como o agente pode interagir com outros agentes e decidir qual as melhores opções.

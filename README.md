@@ -34,3 +34,14 @@ Em 2001 Tim Berner-Lee publicou seu artigo [The Semantic Web](https://www-sop.in
 "His sister, Lucy, was on the line from the doctor's office: "Mom needs to see a specialist and then has to have a series of physical therapy sessions. Biweekly or something. I'm going to have my agent set up the appointments.""
 
 Nesse artigo ele apresenta o conceito de agentes semânticos que deveriam auxiliar a realizar tarefas desde que agendar reuniões a escolher o melhor caminho para casa. No caso citado no artigo se refere a como o agente pode interagir com outros agentes e decidir qual as melhores opções.
+
+" ...Lucy instructed her Semantic Web agent through her handheld Web browser. The agent promptly
+retrieved information about Mom's prescribed treatment from the doctor's agent, looked up several lists of providers,
+and checked for the ones in-plan for Mom's insurance within a 20-mile radius of her home and with a rating of
+excellent or very good on trusted rating services." 
+
+Segundo ele o foco dos agentes não é decidir pelas pessoas porém ajudar a tomar as melhores decisões
+
+" ...The agent presented them with a plan. Pete didn't like it—University Hospital was all the way across
+town from Mom's place, and he'd be driving back in the middle of rush hour. He set his own agent to redo the search
+with stricter preferences about location and time."

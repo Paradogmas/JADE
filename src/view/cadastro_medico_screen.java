@@ -3,8 +3,6 @@ package view;
 import agents.AgenteMedico;
 import jade.core.Agent;
 import jade.wrapper.AgentController;
-import jade.core.Runtime;
-import jade.core.ProfileImpl;
 import jade.wrapper.*;
 
 import javax.swing.*;
@@ -44,8 +42,8 @@ public class cadastro_medico_screen extends Agent {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String name = nome_medico_text_box.getText().trim();
-                    System.out.println(name);
+                    String nome = nome_medico_text_box.getText().trim();
+                    System.out.println(nome);
 
                     String especialidade = especialidade_combo_box.getSelectedItem().toString();
                     String preco = preco_text_box.getText().trim();
@@ -56,14 +54,13 @@ public class cadastro_medico_screen extends Agent {
 
 
                     AgentController Agent = null;
-                    Agent = Container.createNewAgent(name, "agents.AgenteMedico", arrList);
+                    Agent = Container.createNewAgent(nome, "agents.AgenteMedico", arrList);
                     Agent.start();
                 } catch (Exception er) {
-                    System.out.println("Valor invalido");
+                    System.out.println("Valor invalido cadastro medico screen");
                 }
             }
         });
     }
-
 
 }

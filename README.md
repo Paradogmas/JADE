@@ -2,7 +2,7 @@
 
 * Este tutorial parte do pressuposto de que você já possui o JADE e o eclipse instalado em sua máquina, caso não tenha, acesse: https://jade.tilab.com/ e https://www.eclipse.org/downloads/ para obter estas duas ferramentas.
 
-## Passo a passo
+## Passo a passo - Eclipse
 
 * **1º:** Crie um projeto java no eclipse
 
@@ -24,6 +24,25 @@
      ```
 
 * **5º:** Clique em apply e Run.
+
+## Passo a passo - Intellij
+
+* **1º:** Crie um projeto java no intellij
+
+* **2º:** Em run/debug clique Edit configurations
+    - Em Main_class coloque jade.Boot
+    - Em programs arquments coloque:
+    ```
+     -gui nomeagente:NomeAgente
+     ```
+    - Em Use classpath of module coloque o diretório raíz de seu projeto
+    - Em JRE coloque a versão de SDK compatível com o JADE
+
+* **3º:** Crie uma nova classe para o projeto e adicione seu código
+
+* **4º:** Clique em apply e ok.
+
+* **4º:** Clique em run.
 
 Após estes passos a janela do JADE deve aparecer em sua tela.
 

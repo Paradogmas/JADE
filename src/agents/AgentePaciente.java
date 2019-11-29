@@ -9,6 +9,11 @@ import jade.domain.DFService;
 import jade.domain.FIPAException;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import view.result_screen;
 
 public class AgentePaciente extends Agent {
 
@@ -121,6 +126,7 @@ public class AgentePaciente extends Agent {
                     reply = myAgent.receive(mt);
                     if (reply != null) {
                         if (reply.getPerformative() == ACLMessage.INFORM) {
+                            result_screen screen = new result_screen(getAID().getName(), menorPreco, especialidadeMedica, reply.getSender().getName());
                             System.out.println("A consulta em " + especialidadeMedica + " foi marcado com "+reply.getSender().getName());
                             System.out.println("Preco = "+menorPreco);
                             myAgent.doDelete();

@@ -15,7 +15,7 @@ import java.util.Hashtable;
 
 public class cadastro_medico_screen extends Agent {
     ContainerController Container;
-    private AgenteMedico myAgente;
+    AgentController Agent = null;
     private JPanel panel;
     private JComboBox especialidade_combo_box;
     private JTextField preco_text_box;
@@ -28,14 +28,8 @@ public class cadastro_medico_screen extends Agent {
         tela = new JFrame("Atendimento médico");
         tela.setLocation(450, 250);
         tela.setContentPane(panel);
-        tela.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         tela.pack();
         tela.setVisible(true);
-        tela.addWindowListener(new WindowAdapter() {
-            public void windowClosing(WindowEvent e) {
-                myAgente.doDelete();
-            }
-        });
         panel = new JPanel();
 
         button_add.addActionListener(new ActionListener() {
@@ -54,14 +48,18 @@ public class cadastro_medico_screen extends Agent {
 
                     Object arrList[] = new Object[1];
                     arrList[0] = h;
-
-
-                    AgentController Agent = null;
                     Agent = Container.createNewAgent(nome, "agents.AgenteMedico", arrList);
                     Agent.start();
+                    tela.dispose();
                 } catch (Exception er) {
                     System.out.println("Valor invalido cadastro medico screen");
                 }
+            }
+        });
+        tela.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                tela.dispose();
             }
         });
     }

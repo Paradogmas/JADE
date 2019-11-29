@@ -16,7 +16,7 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.Hashtable;
 
-public class ClientContainer {
+class ClientContainer {
     private static ContainerController client;
     private ClientContainer(){
         Profile pClient=new ProfileImpl();
@@ -84,9 +84,9 @@ public class cadastro_medico_screen extends Agent {
                     arrList[0] = h;
 
                     Properties p = new Properties();
-                    p.setProperty(Profile.MAIN_HOST, "192.168.43.70");
+                    p.setProperty(Profile.MAIN_HOST, "192.168.43.101");
                     p.setProperty(Profile.MAIN_PORT, "1099");
-                    p.setProperty(Profile.CONTAINER_NAME, "Main-Container");
+                    p.setProperty(Profile.CONTAINER_NAME, "Hospital");
 
                     MicroRuntime.startJADE(p, null);
                     MicroRuntime.getContainerName();
@@ -100,11 +100,8 @@ public class cadastro_medico_screen extends Agent {
                         }
                     }
 
-                    AgentContainer ccAg=(AgentContainer) ClientContainer.getClient();
-                    ccAg.createNewAgent(agentName, "zm.agents.util.ClientAgent", null);
-                    ccAg.start();
 
-/*
+                    /*
                     AgentController Agent = null;
                     Agent = Container.createNewAgent(nome, "agents.AgenteMedico", arrList);
                     Agent.start();*/

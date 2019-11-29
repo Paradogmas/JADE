@@ -2,6 +2,9 @@ package view;
 
 import agents.AgenteMedico;
 import jade.core.Agent;
+import jade.core.MicroRuntime;
+import jade.core.Profile;
+import jade.util.leap.Properties;
 import jade.wrapper.AgentController;
 import jade.wrapper.*;
 
@@ -49,9 +52,27 @@ public class procurar_consulta_screen extends Agent {
                     Object arrList[] = new Object[2];
                     arrList[0] = especialidade;
 
+
+                    Properties p = new Properties();
+                    p.setProperty(Profile.MAIN_HOST, "192.168.43.101");
+                    p.setProperty(Profile.MAIN_PORT, "1099");
+                    p.setProperty(Profile.CONTAINER_NAME, "Hospital");
+
+                    MicroRuntime.startJADE(p, null);
+                    MicroRuntime.getContainerName();
+                    if (!MicroRuntime.isRunning()) {
+                        System.out.println("Jade MicroRuntime Start Failed");
+                    } else {
+                        try {
+                            MicroRuntime.startAgent(nome, "agents.AgentePaciente", arrList);
+                        } catch (Exception er) {
+                            er.printStackTrace();
+                        }
+                    }
+                    /*
                     AgentController Agent = null;
                     Agent = Container.createNewAgent(nome, "agents.AgentePaciente", arrList);
-                    Agent.start();
+                    Agent.start();*/
                 } catch (Exception er) {
                     System.out.println("Valor invalido procurar consulta screen");
                 }
